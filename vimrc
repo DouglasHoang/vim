@@ -19,7 +19,7 @@ set foldenable "enable folding
 set foldlevelstart=0 "open most folds by default
 set foldnestmax=1 " max nested folds
 set foldmethod=syntax " fold based on indent level
-let mapleader = "<Space>" "New map leader binding
+let mapleader = " " "New map leader binding
 
 "Leaves the insert mode to normal mode
 inoremap jk <ESC>
@@ -36,6 +36,10 @@ inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
+
+" Leader mappings 
+nnoremap <Leader><Leader> <C-^>
+nnoremap <Leader>w :write<CR>
 
 " Set tab width
 set tabstop=4
