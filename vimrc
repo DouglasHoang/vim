@@ -24,8 +24,6 @@ let mapleader = " " "New map leader binding
 "Leaves the insert mode to normal mode
 inoremap jk <ESC>
 
-"space open/closes folds
-nnoremap <space> za  
 
 " Arrows are unvimlike 
 nnoremap <up> <nop>
@@ -37,9 +35,18 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
+" Normal mode mappings
+nnoremap <Tab> za  
+nnoremap <F6> <C-i>
+noremap Y y$
+nnoremap <expr> k (v:count > 5 ? "m'" . v:count : '') . 'k'
+nnoremap <expr> j (v:count > 5 ? "m'" . v:count : '') . 'j'
+
+
 " Leader mappings 
 nnoremap <Leader><Leader> <C-^>
 nnoremap <Leader>w :write<CR>
+nnoremap <Leader>q :quit<CR>
 
 " Set tab width
 set tabstop=4
@@ -69,3 +76,8 @@ let g:javascript_plugin_flow = 1
 
 " vim-jsx
 let g:jsx_ext_required = 0
+
+" Nerdtree plugin
+
+" bind ctrl m to toggle NERDtree
+map <C-n> :NERDTreeToggle<CR>
