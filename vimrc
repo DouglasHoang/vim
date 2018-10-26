@@ -11,12 +11,19 @@ set ignorecase " Ignore case when searching
 set smartcase " When searching try to be smart about cases 
 set hlsearch " Highlight search results
 set incsearch " Makes search act like search in modern browsers
-set ai "Auto indent
+"set ai "Auto indent
 set expandtab " always use spaces instead of tabs
-set smarttab "Smart indent
-"set wrap "Wrap lines
+"set smarttab "Smart indent
+
+" Tab completion
+set wildmode=list:longest,list:full
+set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
+
+set nowrap "Doesn't wrap text
 set shiftwidth=2 " spaces per tab (when shifting)
 set tabstop=2 " spaces per tab
+set softtabstop=2
+set list listchars=tab:\ \ ,trail:· "idk what this is
 set foldenable "enable folding
 set foldlevelstart=0 "open most folds by default
 set foldnestmax=1 " max nested folds
