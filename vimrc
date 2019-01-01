@@ -1,12 +1,71 @@
+"Using vundle
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+" Git plugin not hosted on GitHub
+Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Install L9 and avoid a Naming conflict if you've already installed a
+" different version somewhere else.
+" Plugin 'ascenator/L9', {'name': 'newL9'}
+
+Plugin 'ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'vim-javascript'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'maksimr/vim-jsbeautify'
+Plugin 'moll/vim-node'
+Plugin 'chriskempson/base16-vim'
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+
+
 set number " Sets the line numbers
 set relativenumber "This turns on relative numbering
 set numberwidth=4 "Set the line numbers to 4 spaces
-filetype indent plugin on " Language-dependent indentation, syntax coloring, and other functionality
+"filetype indent plugin on " Language-dependent indentation, syntax coloring, and other functionality
+filetype on
+filetype plugin indent on
 syntax on 
 set encoding=utf-8
 set cursorline " Shows a line on the current line your on
 set showmatch " Highlights matching bracket
-colorscheme base16-ocean " Vim Colorscheme
 set ignorecase " Ignore case when searching
 set smartcase " When searching try to be smart about cases 
 set hlsearch " Highlight search results
@@ -44,6 +103,7 @@ if has('linebreak')
   endif
 endif
 
+
 if has('gui')
   " Turn off scrollbars. (Default on macOS is "egmrL").
   set guioptions-=L
@@ -77,7 +137,6 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 
-
 " Leader mappings 
 nnoremap <Leader><Leader> <C-^>
 nnoremap <Leader>w :write<CR>
@@ -100,34 +159,41 @@ set whichwrap+=<,>,h,l
 set lbr
 set tw=500
 
-" Go-vim plugin
-autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
-
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_function_calls = 1
-let g:go_fmt_command = "goimports"
-let g:go_fmt_experimental = 1
-
 "Ctrl-p speed improvements and ignoreing some files
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
-" vim-javascript settings
-let g:javascript_plugin_flow = 1
-
-" vim-jsx
-let g:jsx_ext_required = 0
-
 " Nerdtree plugin
 
-" bind ctrl m to toggle NERDtree
+" bind ctrl n to toggle NERDtree
 map <C-n> :NERDTreeToggle<CR>
-
 
 " indentLine plugin
 let g:indentLine_color_term = 239
 
-" YouCompleteMe
-" Only turn on for javascript
-let g:ycm_filetype_whitelist = {'javascript.jsx': 1}
+" vim-javascript
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_ngdoc = 1
+let g:javascript_plugin_flow = 1
+augroup javascript_folding
+    au!
+    au FileType javascript setlocal foldmethod=syntax
+augroup END
+
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_javascript_checkers = ['eslint']
+
+" jsbeautify
+map <c-f> :call JsBeautify()<cr>
+
+" colorscheme
+let base16colorspace=256  " Access colors present in 256 colorspace
+colorscheme base16-classic-dark
