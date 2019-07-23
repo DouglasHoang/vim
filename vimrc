@@ -18,7 +18,7 @@ Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " Git plugin not hosted on GitHub
-Plugin 'git://git.wincent.com/command-t.git'
+" Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
 Plugin 'file:///home/gmarik/path/to/plugin'
 " The sparkup vim script is in a subdirectory of this repo called vim.
@@ -28,17 +28,28 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
+
+Plugin 'surround.vim'
+Plugin 'tpope/vim-repeat'
 Plugin 'ctrlp.vim'
+"Plugin 'leafgarland/typescript-vim'
+Plugin 'posva/vim-vue'
+Plugin 'jodosha/vim-godebug'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'vim-javascript'
+Plugin 'pangloss/vim-javascript'
 Plugin 'vim-syntastic/syntastic'
-Plugin 'maksimr/vim-jsbeautify'
+"Plugin 'maksimr/vim-jsbeautify'
 Plugin 'moll/vim-node'
 Plugin 'chriskempson/base16-vim'
+Plugin 'skielbasa/vim-material-monokai'
+Plugin 'mxw/vim-jsx'
+Plugin 'prettier/vim-prettier', { 'do': 'yarn install' }
+"Plugin 'jparise/vim-graphql'
+Plugin 'fatih/vim-go'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -146,6 +157,8 @@ nnoremap <Leader>o :only<CR>
 " <Leader><Leader> -- Open last buffer.
 nnoremap <Leader><Leader> <C-^>
 
+" copy and pasting on to clipboar
+vnoremap <C-c> :w !pbcopy<CR><CR>
 
 " Set tab width
 "set tabstop=4
@@ -160,7 +173,13 @@ set lbr
 set tw=500
 
 "Ctrl-p speed improvements and ignoreing some files
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+"
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\'
+" Set no max file limit
+let g:ctrlp_max_files = 0
+" Search from current directory instead of project root
+let g:ctrlp_working_path_mode = 0
+
 
 " Nerdtree plugin
 
@@ -191,9 +210,36 @@ let g:syntastic_check_on_wq = 0
 
 let g:syntastic_javascript_checkers = ['eslint']
 
-" jsbeautify
-map <c-f> :call JsBeautify()<cr>
-
 " colorscheme
-let base16colorspace=256  " Access colors present in 256 colorspace
-colorscheme base16-classic-dark
+set background=dark
+set termguicolors
+colorscheme material-monokai
+
+" prettier
+let g:prettier#config#semi = 'false'
+let g:prettier#config#bracket_spacing = 'true'
+let g:prettier#config#jsx_bracket_same_line = 'false'
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html Prettier
+
+" Go-vim plugin
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_fmt_command = "goimports"
+let g:go_fmt_experimental = 1
+let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+let g:go_metalinter_autosave = 1
+autocmd FileType go nmap <Leader>i <Plug>(go-info)
+let g:go_auto_type_info = 1
+autocmd FileType go nmap <leader>t  <Plug>(go-test)
+
+" Vue-plugin
+let g:vue_disable_pre_processors=1
+autocmd FileType vue syntax sync fromstart
+
+" YouCompleteMe turn off on vue files
+let g:ycm_filetype_blacklist = { 'vue': 1 }
