@@ -1,38 +1,17 @@
 "Using vundle
 set nocompatible              " be iMproved, required
-filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
-" Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
-
-
 Plugin 'surround.vim'
 Plugin 'tpope/vim-repeat'
 Plugin 'ctrlp.vim'
-"Plugin 'leafgarland/typescript-vim'
 Plugin 'posva/vim-vue'
 Plugin 'jodosha/vim-godebug'
 Plugin 'scrooloose/nerdtree'
@@ -42,48 +21,29 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'pangloss/vim-javascript'
 Plugin 'vim-syntastic/syntastic'
-"Plugin 'maksimr/vim-jsbeautify'
 Plugin 'moll/vim-node'
 Plugin 'chriskempson/base16-vim'
 Plugin 'skielbasa/vim-material-monokai'
 Plugin 'mxw/vim-jsx'
 Plugin 'prettier/vim-prettier', { 'do': 'yarn install' }
-"Plugin 'jparise/vim-graphql'
+Plugin 'jparise/vim-graphql'
 Plugin 'fatih/vim-go'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
-
 
 set number " Sets the line numbers
 set relativenumber "This turns on relative numbering
 set numberwidth=4 "Set the line numbers to 4 spaces
-"filetype indent plugin on " Language-dependent indentation, syntax coloring, and other functionality
-filetype on
-filetype plugin indent on
-syntax on 
+syntax on
 set encoding=utf-8
 set cursorline " Shows a line on the current line your on
 set showmatch " Highlights matching bracket
 set ignorecase " Ignore case when searching
-set smartcase " When searching try to be smart about cases 
+set smartcase " When searching try to be smart about cases
 set hlsearch " Highlight search results
 set incsearch " Makes search act like search in modern browsers
-"set ai "Auto indent
 set expandtab " always use spaces instead of tabs
-"set smarttab "Smart indent
 
 " Tab completion
 set wildmode=list:longest,list:full
@@ -179,10 +139,12 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\'
 let g:ctrlp_max_files = 0
 " Search from current directory instead of project root
 let g:ctrlp_working_path_mode = 0
+let g:ctrlp_show_hidden = 1
 
 
 " Nerdtree plugin
 
+let NERDTreeShowHidden=1
 " bind ctrl n to toggle NERDtree
 map <C-n> :NERDTreeToggle<CR>
 
